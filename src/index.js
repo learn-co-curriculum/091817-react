@@ -1,59 +1,26 @@
-// const createElement = (type, props = {}, children) => {
-//   return {
-//     $$typeof: Symbol.for('react.element'),
-//     type: type,
-//     props: { ...props, children: children },
-//     ref: null
-//   };
-// };
+import ReactDOM from 'react-dom';
+import React from 'react';
 
-const Article = props => {
-  return React.createElement('div', {}, [
-    React.createElement('h1', {}, props.title),
-    React.createElement('p', {}, props.text)
-  ]);
-};
-
-const NavBar = props => {
-  return React.createElement(
-    'div',
-    { className: `ui inverted ${props.color} menu` },
-    React.createElement(
-      'a',
-      { className: 'item' },
-      React.createElement('h2', { className: 'ui header' }, [
-        React.createElement('i', { className: `${props.icon} icon` }),
-        React.createElement('div', { className: 'content' }, props.title),
-        React.createElement(
-          'div',
-          { className: 'sub header' },
-          props.description
-        )
-      ])
-    )
+const Navbar = props => {
+  return (
+    <div className={`ui inverted ${props.color} menu`}>
+      <a className="item">
+        <h2 className="ui header">
+          <i className={`${props.icon} icon`} />
+          <div className="content">{props.title}</div>
+          <div className="sub header">{props.description}</div>
+        </h2>
+      </a>
+    </div>
   );
 };
 
-// <div class="ui inverted orange menu">
-//     <a class='item'>
-//       <h2 class="ui header">
-//         <i class="paw icon"></i>
-//         <div class="content">
-//           ZooKeepr
-//         </div>
-//         <div class="sub header">
-//           Keep track of your animals
-//         </div>
-//       </h2>
-//     </a>
-//   </div>
-
 ReactDOM.render(
-  NavBar({
-    color: 'green',
-    title: 'Paintr',
-    icon: 'paint brush',
-    description: 'wow idk what this does'
-  }),
+  <Navbar
+    color="grenn"
+    title="Paintr"
+    icon="paint brush"
+    description="wow idk"
+  />,
   document.getElementById('main')
 );
