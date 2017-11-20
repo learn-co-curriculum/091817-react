@@ -1,0 +1,23 @@
+{
+  "name": "091817-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "navbar-example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learn-co-curriculum/091817-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/learn-co-curriculum/091817-react/issues"
+  },
+  "homepage": "https://github.com/learn-co-curriculum/091817-react#readme",
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  }
+}
