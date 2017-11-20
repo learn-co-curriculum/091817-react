@@ -18,6 +18,7 @@
   "homepage": "https://github.com/learn-co-curriculum/091817-react#readme",
   "dependencies": {
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "semantic-ui-css": "^2.2.12"
   }
 }
