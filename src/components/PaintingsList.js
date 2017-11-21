@@ -1,5 +1,5 @@
 import React from 'react';
-import Painting from './Painting';
+import DeleteablePainting from './DeleteablePainting';
 import paintings from '../../artworks';
 
 class PaintingsList extends React.Component {
@@ -9,11 +9,17 @@ class PaintingsList extends React.Component {
     this.state = {
       paintings: paintings.sort((a, b) => b.votes - a.votes)
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete(id) {
+    const updatedState = this.state.paintings.filter(pntg => pntg.id !== id);
+
+    this.setState({ paintings: updatedState });
   }
 
   handleVote(id) {
-    console.log(id);
-
     const updatedPaintings = this.state.paintings.map(pntg => {
       if (pntg.id === id) {
         return Object.assign({}, pntg, { votes: pntg.votes + 1 });
@@ -29,14 +35,11 @@ class PaintingsList extends React.Component {
 
   render() {
     const allPaintings = this.state.paintings.map(pntg => (
-      <Painting
+      <DeleteablePainting
         key={pntg.id}
-        id={pntg.id}
-        title={pntg.title}
-        artist={pntg.artist.name}
-        image={pntg.image}
-        votes={pntg.votes}
-        handleClick={this.handleVote.bind(this, pntg.id)}
+        painting={pntg}
+        handleVote={this.handleVote.bind(this, pntg.id)}
+        handleDelete={this.handleDelete}
       />
     ));
     return (
