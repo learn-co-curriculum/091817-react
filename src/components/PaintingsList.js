@@ -13,16 +13,11 @@ class PaintingsList extends React.Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  componentWillMount() {
-    console.log('Will Mount in PaintingsList');
-  }
-
   componentDidMount() {
-    console.log('Did Mount in PaintingsList');
-    fetch('http://localhost:3000/paintings/')
+    fetch('http://localhost:3001/api/v1/paintings/')
       .then(res => res.json())
       .then(data => {
-        this.setState({ paintings: data });
+        this.setState({ paintings: data.sort((a, b) => b.votes - a.votes) });
       });
   }
 
@@ -38,13 +33,15 @@ class PaintingsList extends React.Component {
   }
 
   handleVote(id) {
-    const updatedPaintings = this.state.paintings.map(pntg => {
-      if (pntg.id === id) {
-        return Object.assign({}, pntg, { votes: pntg.votes + 1 });
-      } else {
-        return pntg;
-      }
-    });
+    const updatedPaintings = this.state.paintings
+      .map(pntg => {
+        if (pntg.id === id) {
+          return Object.assign({}, pntg, { votes: pntg.votes + 1 });
+        } else {
+          return pntg;
+        }
+      })
+      .sort((a, b) => b.votes - a.votes);
 
     this.setState(state => {
       return { paintings: updatedPaintings };
